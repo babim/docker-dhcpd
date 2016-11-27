@@ -26,4 +26,5 @@ RANGEEND
 Gateway: 192.168.0.1
 DNS: 192.168.0.1
 Range: 192.168.0.10 - 192.168.0.200
+Domain: example.lan
 ```
