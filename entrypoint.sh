@@ -11,7 +11,7 @@ DNS=${DNS:-192.168.0.1}
 DOMAIN=${DOMAIN:-example.com}
 
 # set config
-if [ -f "/etc/dhcp/dhcpd.conf" ]; then
+if [ ! -f "/etc/dhcp/dhcpd.conf" ]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 default-lease-time $DEFAULTLEASETIME;
 max-lease-time $MAXLEASETIME;
