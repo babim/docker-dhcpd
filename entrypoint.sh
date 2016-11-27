@@ -9,6 +9,8 @@ NETMASK=${NETMASK:-255.255.255.0}
 #GATEWAY=${GATEWAY:-192.168.0.1}
 #DNS=${DNS:-192.168.0.1}
 #DOMAIN=${DOMAIN:-example.lan}
+#NTPSERVER=${NTPSERVER:-192.168.0.1}
+#WINS=${WINS:-192.168.0.1}
 #RANGESTART=${RANGESTART:-192.168.0.10}
 #RANGEEND=${RANGEEND:-192.168.0.200}
 FILEBOOT1=${FILEBOOT:-pxelinux.0}
@@ -21,6 +23,10 @@ default-lease-time $LEASETIME;
 max-lease-time $MAXLEASETIME;
 subnet $SUBNET netmask $NETMASK {
 	option subnet-mask $NETMASK;
+EOF
+if [[ ! -z "${GATEWAY}" ]]; then
+cat <<EOF>> /etc/dhcp/dhcpd.conf
+	option routers $GATEWAY;
 EOF
 if [[ ! -z "${BROADCAST}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
@@ -39,10 +45,14 @@ if [[ ! -z "${RANGESTART}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	range $RANGESTART $RANGEEND;
 EOF
-if [[ ! -z "${GATEWAY}" ]]; then
+if [[ ! -z "${NTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
-	option routers $GATEWAY;
-EOF	
+	option nntp-server $NTPSERVER;
+EOF
+if [[ ! -z "${WINS}" ]]; then
+cat <<EOF>> /etc/dhcp/dhcpd.conf
+	option netbios-name-servers $WINS;
+EOF
 if [[ ! -z "${TFTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
        filename "$FILEBOOT1";
