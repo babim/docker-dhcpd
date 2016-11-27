@@ -24,40 +24,50 @@ max-lease-time $MAXLEASETIME;
 subnet $SUBNET netmask $NETMASK {
 	option subnet-mask $NETMASK;
 EOF
+
 if [[ ! -z "${GATEWAY}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option routers $GATEWAY;
 EOF
+fi
 if [[ ! -z "${BROADCAST}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option broadcast-address $BROADCAST;
 EOF
+fi
 if [[ ! -z "${DNS}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option domain-name-servers $DNS;
 EOF
+fi
 if [[ ! -z "${DOMAIN}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option domain-name "$DOMAIN";
 	option domain-search "$DOMAIN";
 EOF
+fi
 if [[ ! -z "${RANGESTART}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	range $RANGESTART $RANGEEND;
 EOF
+fi
 if [[ ! -z "${NTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option nntp-server $NTPSERVER;
 EOF
+fi
 if [[ ! -z "${WINS}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 	option netbios-name-servers $WINS;
 EOF
+fi
 if [[ ! -z "${TFTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
        filename "$FILEBOOT1";
        next-server $TFTPSERVER
 EOF
+fi
+
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 }
 EOF
