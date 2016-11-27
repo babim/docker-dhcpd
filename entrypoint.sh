@@ -9,6 +9,8 @@ BROADCAST=${BROADCAST:-192.168.0.255}
 GATEWAY=${GATEWAY:-192.168.0.1}
 DNS=${DNS:-192.168.0.1}
 DOMAIN=${DOMAIN:-example.com}
+RANGESTART=${RANGESTART:-192.168.0.10}
+RANGEEND=${RANGEEND:-192.168.0.200}
 
 # set config
 if [ ! -f "/etc/dhcp/dhcpd.conf" ]; then
@@ -22,6 +24,7 @@ subnet $SUBNET netmask $NETMASK {
 	option domain-name-servers $DNS;
 	option domain-name "$DOMAIN";
 	option domain-search "$DOMAIN";
+	range $RANGESTART $RANGEEND;
 }
 EOF
 fi
