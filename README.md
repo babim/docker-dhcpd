@@ -16,6 +16,8 @@ BROADCAST
 GATEWAY
 DNS
 DOMAIN
+RANGESTART
+RANGEEND
 ```
 
 # Default without -e
@@ -23,4 +25,5 @@ DOMAIN
 192.168.0.0 /24
 Gateway: 192.168.0.1
 DNS: 192.168.0.1
+Range: 192.168.0.10 - 192.168.0.200
 ```
