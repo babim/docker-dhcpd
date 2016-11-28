@@ -3,7 +3,7 @@ DHCPD on Alpine Linux
 
 # Run
 ```
-docker run -it --name dhcpd --net=host babim/dhcpd
+docker run -it --name dhcpd --net=host -p 67:67 -p 67:67/udp babim/dhcpd
 ```
 
 # environment value (with -e)
