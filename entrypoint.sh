@@ -11,8 +11,8 @@ DNS=${DNS:-8.8.8.8}
 #DOMAIN=${DOMAIN:-example.lan}
 #NTPSERVER=${NTPSERVER:-192.168.0.1}
 #WINS=${WINS:-192.168.0.1}
-#RANGESTART=${RANGESTART:-192.168.0.10}
-#RANGEEND=${RANGEEND:-192.168.0.200}
+RANGESTART=${RANGESTART:-$SUBNET10}
+RANGEEND=${RANGEEND:-$SUBNET90}
 FILEBOOT=${FILEBOOT:-pxelinux.0}
 #TFTPSERVER=${TFTPSERVER:-192.168.0.200}
 
@@ -21,6 +21,7 @@ if [ ! -f "/etc/dhcp/dhcpd.conf" ]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
 default-lease-time $LEASETIME;
 max-lease-time $MAXLEASETIME;
+authoritative;
 subnet $SUBNET netmask $NETMASK {
 	option subnet-mask $NETMASK;
 EOF
