@@ -64,7 +64,7 @@ fi
 if [[ ! -z "${TFTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
        filename "$FILEBOOT";
-       next-server $TFTPSERVER
+       next-server $TFTPSERVER;
 EOF
 fi
 
