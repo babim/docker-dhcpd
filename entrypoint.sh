@@ -13,7 +13,7 @@ NETMASK=${NETMASK:-255.255.255.0}
 #WINS=${WINS:-192.168.0.1}
 #RANGESTART=${RANGESTART:-192.168.0.10}
 #RANGEEND=${RANGEEND:-192.168.0.200}
-FILEBOOT1=${FILEBOOT:-pxelinux.0}
+FILEBOOT=${FILEBOOT:-pxelinux.0}
 #TFTPSERVER=${TFTPSERVER:-192.168.0.200}
 
 # set config
@@ -63,7 +63,7 @@ EOF
 fi
 if [[ ! -z "${TFTPSERVER}" ]]; then
 cat <<EOF>> /etc/dhcp/dhcpd.conf
-       filename "$FILEBOOT1";
+       filename "$FILEBOOT";
        next-server $TFTPSERVER
 EOF
 fi
