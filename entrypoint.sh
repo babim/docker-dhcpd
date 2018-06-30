@@ -1,4 +1,7 @@
-#!/bin/sh -e
+#!/bin/bash -e
+
+# option with entrypoint
+if [ -f "/option.sh" ]; then /option.sh; fi
 
 # value
 LEASETIME=${LEASETIME:-600}
